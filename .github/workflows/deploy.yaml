@@ -4,7 +4,7 @@ name: "deploy"
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -20,5 +20,5 @@ jobs:
         with:
           git_remote_url: "ssh://dokku@heroku.ctdn.net:2222/imaginary-demo"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          branch: master
+          branch: main
           git_push_flags: --force
