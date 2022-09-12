@@ -9,7 +9,6 @@ import (
 	"path"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/h2non/bimg"
 	"github.com/h2non/filetype"
@@ -28,8 +27,6 @@ func indexController(o ServerOptions) func(w http.ResponseWriter, r *http.Reques
 			bimg.Version,
 			bimg.VipsVersion,
 			CustomBuild,
-			time.Now().UTC().Format(time.RFC3339),
-			InstanceID,
 		})
 
 		// Write response headers
