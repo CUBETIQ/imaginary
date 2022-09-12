@@ -11,4 +11,6 @@ type Versions struct {
 	BimgVersion      string `json:"bimg"`
 	VipsVersion      string `json:"libvips"`
 	CustomBuild      string `json:"custom_build"`
+	ServerTime       string `json:"server_time"`
+	InstanceID       string `json:"instance_id"`
 }

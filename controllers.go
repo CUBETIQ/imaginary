@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"mime"
 	"net/http"
+	"os"
 	"path"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/h2non/bimg"
 	"github.com/h2non/filetype"
@@ -20,13 +22,28 @@ func indexController(o ServerOptions) func(w http.ResponseWriter, r *http.Reques
 			return
 		}
 
+		InstanceID, err := os.Hostname()
 		body, _ := json.Marshal(Versions{
 			Version,
 			bimg.Version,
 			bimg.VipsVersion,
 			CustomBuild,
+			time.Now().UTC().Format(time.RFC3339),
+			InstanceID,
 		})
+
+		// Write response headers
+		w.Header().Set("X-Instance", InstanceID)
 		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Cache-Control", "no-cache")
+		w.Header().Set("X-Content-Type-Options", "nosniff")
+		w.Header().Set("X-Frame-Options", "deny")
+		w.Header().Set("X-XSS-Protection", "1; mode=block")
+		w.Header().Set("Content-Security-Policy", "default-src 'none'")
+		w.Header().Set("Referrer-Policy", "no-referrer")
+		w.Header().Set("Feature-Policy", "none")
+		w.WriteHeader(http.StatusOK)
+
 		_, _ = w.Write(body)
 	}
 }
