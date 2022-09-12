@@ -22,7 +22,7 @@ func indexController(o ServerOptions) func(w http.ResponseWriter, r *http.Reques
 			return
 		}
 
-		InstanceID, err := os.Hostname()
+		InstanceID, _ := os.Hostname()
 		body, _ := json.Marshal(Versions{
 			Version,
 			bimg.Version,
