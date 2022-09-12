@@ -99,4 +99,4 @@ USER nobody
 ENTRYPOINT ["/usr/local/bin/imaginary"]
 
 # Expose the server TCP port
-EXPOSE ${PORT}
+# EXPOSE ${PORT}
