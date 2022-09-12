@@ -35,7 +35,7 @@ func indexController(o ServerOptions) func(w http.ResponseWriter, r *http.Reques
 		// Write response headers
 		w.Header().Set("X-Instance", InstanceID)
 		w.Header().Set("Content-Type", "application/json")
-		w.Header().Set("Cache-Control", "no-cache")
+		w.Header().Set("Cache-Control", "private, no-store, no-cache, or max-age=0")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		w.Header().Set("X-Frame-Options", "deny")
 		w.Header().Set("X-XSS-Protection", "1; mode=block")
